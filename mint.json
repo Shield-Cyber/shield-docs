@@ -31,30 +31,35 @@
       "url": "api-reference"
     }
   ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "http://localhost:3000/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://www.shieldcyber.io/blog"
-    }
-  ],
+  
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Overview",
       "pages": [
         "introduction",
         "quickstart",
         "development"
+      ]
+    },
+    {
+      "group": "Usage",
+      "pages": [
+        "dashboard",
+        "Attack Surface",
+        "Internal Network",
+        "Identity Security",
+        "Scans"
+        
+      ]
+    },
+    {
+      "group": "Deployment",
+      "pages": [
+        "Attack Surface Scanning",
+        "Agent Scanning",
+        "Network Scanning",
+        "Active Directory Collection"
+        
       ]
     },
     {
@@ -81,6 +86,24 @@
         "api-reference/endpoint/create",
         "api-reference/endpoint/delete"
       ]
+    }
+  ],
+
+  "anchors": [
+    {
+      "name": "Documentation",
+      "icon": "book-open-cover",
+      "url": "http://localhost:3000/docs"
+    },
+    {
+      "name": "Community",
+      "icon": "slack",
+      "url": "https://mintlify.com/community"
+    },
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://www.shieldcyber.io/blog"
     }
   ],
   "footerSocials": {

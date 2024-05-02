@@ -1,0 +1,43 @@
+---
+title: "Dashboard"
+description: "The Dashboard will show aggregates for each assets within the different modules of the Shield platform."
+---
+
+
+The Dashboard will show aggregates for each assets within the different modules of the Shield platform.
+
+### External Attack Surface Metrics
+
+
+- **Live Hosts** - The number of hosts that were identified from the last scan that was performed on the external network.
+
+- **External Services** - The number of live services across all hosts that were identified from the last scan that was performed on the external network.
+
+- **External Vulnerabilities** - The number of unique vulnerabilities across the external network.
+
+NOTE:
+The vulnerabilities on each host are tracked for the lifespan of that specific vulnerability, meaning the vulnerability will live within the Shield platform until the vulnerability is remediated on the service of the host it was identified on. The aggregate and details of each vulnerability can be viewed within the asset and vulnerability details with the Attack Surface module.
+
+### Internal Network Metrics
+
+
+- **Internal Hosts** - The number of hosts that were identified from scans or agents that were deployed across the internal network.
+
+- **Identity Objects** - Identity objects are anything has an identity within a directory services environment.  Currently, Shield has the ability to collect all user, groups, and computer objects within an Active Directory (AD) environment.  This gives a relative size of the attack surface for an organization's identity layer.
+
+- **Internal Vulnerabilities** - The number of vulnerabilities that exist on hosts within the internal network that have been collected from scans or agent-based vulnerability detections.
+
+
+NOTE: The aggregation of remediated vulnerabilities is automated within the Shield platform.  The details of each remediated vulnerability can be found within the **Remediation** tab for both the [Attack Surface](https://platform.shieldcyber.io/asm/remediation) and [Internal Network](https://platform.shieldcyber.io/inetwork/remediation) Modules.
+
+### Vulnerability Categorization
+
+The Shield platform will categorize each vulnerability detected across the **Attack Surface**, **Internal Network**, and **Identity Security** modules.  The categories are determined by the solution (*or fix*) to remediate the specific vulnerability.  The following categories exist within the platform:
+- **Missing Microsoft Patches**
+- **Missing Patches and Updates**
+- **Insecure Configurations and Services**
+- **Insecure Active Directory Configurations**
+- **Insecure Access Controls**
+
+
+NOTE: As the detection capabilities evolve and become more granular within the Shield platform, the categories will become more robust. The goal of categorizing each vulnerability or risk detected across external and internal hosts, as well as identities is to determine more intelligent remediation plans for the organizations that are fixing the detected issues.

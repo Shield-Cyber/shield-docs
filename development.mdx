@@ -1,98 +1,54 @@
 ---
-title: 'Development'
-description: 'Learn how to preview changes locally'
+title: "What's New?"
+description: 'We are continuing to update the Shield Platform and will be posting about recent changes that have been made and will link to the appropriate documentation'
 ---
 
-<Info>
-  **Prerequisite** You should have installed Node.js (version 18.10.0 or
-  higher).
-</Info>
 
-Step 1. Install Mintlify on your OS:
 
-<CodeGroup>
+<Info>Shield Cyber's Public Facing API</Info>
+### Shield Cyber's Public Facing API
 
-```bash npm
-npm i -g mintlify
-```
 
-```bash yarn
-yarn global add mintlify
-```
+- **Date**: 2-20-24
+- **Scope**: Attack Surface, Internal Network, and Identity Security Vulnerabilities
+- **Description**:  Shield now has a public facing API endpoint to retrieve results from the Attack Surface, Internal Network, and Identity Security Modules.  Additionally there are endpoints that support CSV file export for all results.
+- **References**: [Shield API Swagger](https://api.shieldcyber.io/swagger/index.html); [Shield API Documentation](https://docs.shieldcyber.io/api.html)
 
-</CodeGroup>
 
-Step 2. Go to the docs are located (where you can find `mint.json`) and run the following command:
+### Export Vulnerabilities Feature
 
-```bash
-mintlify dev
-```
 
-The documentation website is now available at `http://localhost:3000`.
+- **Date**: 2-15-24
+- **Scope**: Attack Surface, Internal Network, and Identity Security Vulnerabilities
+- **Description**:  The Shield platform now has the capability to export all vulnerabilities for each module in the form of comma separated value (CSV) files.
+- **References**: [Attack Surface](https://docs.shieldcyber.io/docs/usage/attack-surface.html); [Internal Network](https://docs.shieldcyber.io/docs/usage/internal-network.html); [Identity Security](https://docs.shieldcyber.io/docs/usage/identity-security.html);
 
-### Custom Ports
 
-Mintlify uses port 3000 by default. You can use the `--port` flag to customize the port Mintlify runs on. For example, use this command to run in port 3333:
+### Network-Based Scanner Deployment
 
-```bash
-mintlify dev --port 3333
-```
+- **Date**: 2-12-24
+- **Scope**: Network Scanner Deployment & Automation
+- **Description**:  The Shield network scanner can now be deployed and launched with automated scripts on a Linux-based host. This removes the need for having a separate service that needs to run alongside the Shield scanner after deployed.
+- **References**: [Network Scanner Deployment](https://docs.shieldcyber.io/docs/deployment/network-scans.html); [Shield Cyber Network Scanner GitHub](https://github.com/Shield-Cyber/ShieldCyber-REST-API)
 
-You will see an error like this if you try to run Mintlify in a port that's already taken:
 
-```md
-Error: listen EADDRINUSE: address already in use :::3000
-```
+### External Attack Surface Scanning & Hosting
 
-## Mintlify Versions
+- **Date**: 1-29-24
+- **Scope**: Attack Surface Scanning
+- **Description**: Each Shield subscription that is created now comes configured with an external attack surface scanner.  With this added feature, users have the ability to configure and create scans that target their external (internet-facing) infrastructure.
+- **References**: [Attack Surface](https://docs.shieldcyber.io/docs/usage/scans/scan-creation.html)
 
-Each CLI is linked to a specific version of Mintlify. Please update the CLI if your local website looks different than production.
+### Scan Creation
 
-<CodeGroup>
+- **Date**: 1-29-24
+- **Scope**: Network Scan Creation
+- **Description**: The Shield Platform now has the ability to create and launch network-based scans within the [Scan Creation](https://platform.shieldcyber.io/scan/creation) module of the platform.
+- **References**: [Scan Creation Documentation](https://docs.shieldcyber.io/docs/usage/scans/scan-creation.html)
 
-```bash npm
-npm i -g mintlify@latest
-```
+### Agent-Based Scanning 
 
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Deployment
-
-<Tip>
-  Unlimited editors available under the [Startup
-  Plan](https://mintlify.com/pricing)
-</Tip>
-
-You should see the following if the deploy successfully went through:
-
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-## Troubleshooting
-
-Here's how to solve some common problems when working with the CLI.
-
-<AccordionGroup>
-  <Accordion title="Mintlify is not loading">
-    Update to Node v18. Run `mintlify install` and try again.
-  </Accordion>
-  <Accordion title="No such file or directory on Windows">
-Go to the `C:/Users/Username/.mintlify/` directory and remove the `mint`
-folder. Then Open the Git Bash in this location and run `git clone
-https://github.com/mintlify/mint.git`.
-
-Repeat step 3.
-
-  </Accordion>
-  <Accordion title="Getting an unknown error">
-    Try navigating to the root of your device and delete the ~/.mintlify folder.
-    Then run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in a CLI version? [Check out the CLI changelog.](/changelog/command-line)
+- **Date**: 12-18-24
+- **Scope**: Agent-Based Vulnerability Scanning (Windows OS) 
+- **Description**: The Shield Platform can now perform vulnerability scanning via the Shield Agent.  Please navigate to the [Agents](https://platform.shieldcyber.io/agents) to manage and add new agents for each subscription.
+- **References**: [Agent-Based Scanning](https://docs.shieldcyber.io/docs/deployment/agent-based-scans.html)
