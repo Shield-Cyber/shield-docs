@@ -1,19 +1,26 @@
 ---
 title: "Scans"
-description: "The Scans module will allow users to create and control all network-based scanning of the target external attack surface assets and internal network assets."
+description: "The Scans module allows users to create and control all network-based scanning for the target external attack surface assets and internal network assets."
 ---
 
 The **Scanning** functionality is dedicated to creating, configuring, and managing network-based scans for deployed external and internal scanners that will target an organization's infrastructure and attempt to identify vulnerabilities.
 
-Each subscription will come pre-configured with the ability to scan externally and setup with a dedicated scanner.
+Each subscription will come pre-configured with the ability to scan externally and should be setup with a dedicated attack surface scanner.
 
-### Scan Creation
+## Scan Creation
 
-Users have the ability to create and configure network-based vulnerability scans against their external and internal network asset targets.  
+Users have the ability to create and configure network-based vulnerability scans against their external and internal network asset targets.  To create scans, users will need to follow the steps provided below: 
 
+<Steps>
+  <Step title="Target Creation">
+    Targets and configurations need to be created and saved.  Specify the target name, IP address and/or Hostname, as well as the port list, alive test, and the location that the scan will be executed from.
+  </Step>
+  <Step title="Scan Creation">
+    Scans need to be created and tied to the targets that were generated from the initial step.  Enter a scan name and then select the created target(s) and scan configuration to assess the targets.
+  </Step>
+  <Step title="Launch or Schedule Scans to Run">
+    Once scans are created and are in the "New" state, users can navigate to the Scan Control or the Schedule page(s) to launch the initial scan on a one-time basis (Scan Control) or scheduled out to run at at designated time and frequency (Schedule).
+  </Step>
+</Steps>
 
-### Scan Control
-
-
-### Scan Scheduling
 

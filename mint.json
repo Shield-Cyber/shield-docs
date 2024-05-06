@@ -43,11 +43,11 @@
     {
       "group": "Usage",
       "pages": [
-        "/usage/dashboard",
-        "/usage/attack-surface",
-        "/usage/internal-network",
-        "/usage/identity-security",
-        "/usage/scans"
+        "usage/dashboard",
+        "usage/attack-surface",
+        "usage/internal-network",
+        "usage/identity-security",
+        "usage/scans"
         
       ]
     },
@@ -59,17 +59,6 @@
         "Network Scanning",
         "Active Directory Collection"
         
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
       ]
     },
     {
@@ -92,7 +81,7 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "http://localhost:3000/docs"
+      "url": "https://docs.shieldcyber.io"
     },
     {
       "name": "Community",
@@ -106,8 +95,8 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/shieldcyberio",
+    "github": "https://github.com/Shield-Cyber",
+    "linkedin": "https://www.linkedin.com/company/shield-cybersec"
   }
 }
