@@ -36,19 +36,18 @@
     {
       "group": "Overview",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "overview",
+        "whats-new"
       ]
     },
     {
       "group": "Usage",
       "pages": [
-        "dashboard",
-        "Attack Surface",
-        "Internal Network",
-        "Identity Security",
-        "Scans"
+        "/usage/dashboard",
+        "/usage/attack-surface",
+        "/usage/internal-network",
+        "/usage/identity-security",
+        "/usage/scans"
         
       ]
     },
