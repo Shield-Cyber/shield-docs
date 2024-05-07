@@ -7,9 +7,9 @@ The **Scanning** functionality is dedicated to creating, configuring, and managi
 
 Each subscription will come pre-configured with the ability to scan externally and should be setup with a dedicated attack surface scanner.
 
-## Scan Creation
+## Scan Initialization
 
-Users have the ability to create and configure network-based vulnerability scans against their external and internal network asset targets.  To create scans, users will need to follow the steps provided below: 
+Users have the ability to create and configure network-based vulnerability scans against their external and internal network asset targets.  To create scans, users should perform the following steps, as described below: 
 
 <Steps>
   <Step title="Target Creation">
@@ -23,4 +23,56 @@ Users have the ability to create and configure network-based vulnerability scans
   </Step>
 </Steps>
 
+### Target Creation
 
+To create a target, navigate the the [Scan Creation](https://platform.shieldcyber.io/scan/creation) page and click **Add Target**.  Users will be prompted to then enter the following values within the 
+**New Target** prompt: 
+- **Label**: Target or asset name
+- **IP Addresses**: IP address, IP address range, or domains (fully-qualified hostnames)
+- **Port List**: Specific ports to scan (All TCP, All TCP and NMAP Top 100 UDP, or All TCP and UDP)
+- **Alive Test**: What traffic to send to the target assets to perform initial fingerprinting
+- **Location**: What scanner to use to scan the created targets
+
+<Frame type="glass">
+  <img src="/images/scans-target-creation.png" />
+</Frame>
+
+Once the target is created, click **Submit**, and the platform will sync back to the scanner.  If the scanner is service successfully creates the targets, the targets will become **Available**.  Once this happens, users can proceed to create scans.
+
+
+<Frame type="glass">
+  <img src="/images/scan-target-created.png" />
+</Frame>
+
+
+### Scan Creation
+
+To create a scan, you will need to attach the targets that were created in the previous steps, name the scan, and choose the scan configuration.  Currently, users have the ability to perform two (2) scan configurations:
+
+- **Basic Network Scan**: The basic network scan will perform all of the network-based vulnerability tests against the targets that are used for the scan that is created. 
+- **Discovery**:  The discovery scan will attempt to probe with the specific **Alive Test** configurations that were set on the targets that are specified for the scan that is created.
+
+<Frame type="glass">
+  <img src="/images/scan-creation.png" />
+</Frame>
+
+Once the scan has been named, the targets have been selected, and the scan configuration is chosen, select **Save**, and the scan will be created.  When the scan has been saved and synced to the scanner and it has reached the **New** status, the scan is ready to be launched. 
+
+
+<Frame type="glass">
+  <img src="/images/scan-created.png" />
+</Frame>
+
+### Scan Control
+
+The scan control page displays all the scans that have been created.  
+
+<Note>The **Location** of each scanner is setup when the Shield Service is installed on a the target environment.  Subscriptions have the ability to contain multiple locations under a single subscription, however, each scanner will have one location (1:1).</Note>
+
+The **Scan Control** module will allow users to view the scans at each location, the name of the scan, and the status of the scan. If a scan has completed successfully, users have the ability to re-sync the information within each scan at any point in time by clicking the purple re-fresh button in the top right corner of the scanner's location table.
+
+<Frame type="glass">
+  <img src="/images/scan-control.png" />
+</Frame>
+
+To create scans for each location the subscription has access to, users should navigate to the [Scan Creation](https://docs.shieldcyber.io/docs/usage/scans/scan-creation.html) to configure and make the scans.
