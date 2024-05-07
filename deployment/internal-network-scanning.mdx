@@ -1,0 +1,96 @@
+---
+title: "Internal Network Scanning"
+description: "The ability to configure and perform vulnerability scans against a single network or multiple network segments (or **locations**) can be accomplished by downloading and installing the Shield network vulnerability scanner within the target network location.  These scans will attempt to identify vulnerabilities against the targeted IP addresses, CIDR ranges, and/or domains."
+---
+
+## Scanner Deployment
+
+This scanner should be used for internal network vulnerability scans or discovery scans for different network locations where it will be deployed.  Before proceeding to install the scanner, please make sure you have the following required values to link the scanner properly:
+  - **Subscription ID** - Subscription ID where the scanner needs to link back to.
+  - **Location Name** - Location name where the scanner is deployed. Users should create this value and make sure it is unique for each subscription.
+  - **Subscription API Key** - API Key located within the [**My Account**](https://platform.shieldcyber.io/account) page, under the **Subscriptions** tab.  Use the `Copy` button within the Subscriptions table to access the API Key.
+
+<Warning>Please note, users have the ability to regenerate the subscription API Key, however, once this is regenerated, the previous API Key(s) will no longer work.  To re-connect any services utilizing old API Key(s), please modify the existing API Key and restart any deployed services.</Warning>
+
+To install and link a dedicated Shield network scanner, users will need to do the following:
+
+<Steps>
+  <Step title="Deploy a Dedicated Shield Scanner">
+    Users should deploy a dedicated Shield scanner to install the Shield scanner software on to perform network-based vulnerability scans.
+  </Step>
+  <Step title="Download and Install the Shield Scanner">
+    Navigate to the Deployment page and input the required parameters to generate the necessary installation scripts. Copy and run these scripts on the dedicated Shield scanner.
+  </Step>
+  <Step title="Link the Scanner within the Shield Platform">
+    Navigate to the Settings page to link the scanner within the Shield platform.
+  </Step>
+</Steps>
+
+### Linux-Based OS (Preferred) Install
+To install on a Linux based OS, there is a single script that can be downloaded and executed to install and start the Shield service.  Once the Shield service is installed, the scanner can then be installed, where the password needs to be set.
+
+#### Minimum Recommended Specs
+
+|  Type | Specs  |
+|---|---|
+| CPU  | 4 2GHz cores |
+|  Memory | 8 GB RAM  |
+|  Disk Space | 50 GB (not including space used by the host OS) |
+
+### Deployment
+
+Shield now has a consolidated **Deployments** page within the platform.  To manage all of the deployments for the services, please navigate to the [Internal Network Deployment](https://platform.shieldcyber.io/deployment/internal-network) page and click into the **Network-Based** tab to generate the commands needed to install and start the Shield network-based vulnerability scanner.
+
+The following user-created values should be added to generate the commands necessary to configure and install the Shield scanner: 
+- **Location**: Network location where the scanner will be deployed (eg., Shield Internal Network)
+- **Password**: User generated password that will be used to link the scanner to the Shield platform
+
+<Frame type="glass">
+  <img src="/images/intn-deployment.png" />
+</Frame>
+
+Once these four (4) commands are ran successfully on the dedicated Shield scanner, the Shield service (ShieldCyber.Agent.Shield) will start and the scanner will begin to initialize and install the plugins required to perform vulnerability scans.  To confirm that the service is running successfully on the dedicated scanner, run the following command to view the service output:
+
+`sudo service ShieldCyber.Agent.Shield status`
+
+And the output of this command should state that the service is idle: 
+
+<Frame type="glass">
+  <img src="/images/service-output.png" />
+</Frame>
+
+Once the service is running in the desired state, continue to link the scanner within the platform by navigating to **Settings** -> [**Scanners**](https://platform.shieldcyber.io/settings/scanners) to complete linking the scanner.
+
+### Link Scanner
+
+To use the scanner, it will need to be linked within the Shield platform.  To complete this step, navigate to the **Settings** -> [**Scanners](https://platform.shieldcyber.io/settings/scanners), click **New Configuration**, and then enter the following values, then save the created configuration:
+  - **Location**: Select the location that was created for the scanner that is being linked.  The Shield service needs to be installed and running for the Location value to populate within the drop-down box.
+  - **Password**: Enter the password that was created during the Shield scanner deployment process
+
+Once the scanner is linked and the settings are saved, users can begin performing network-based vulnerability scans for the newly deployed scanner.  Proceed to the [**Scan Creation**](https://platform.shieldcyber.io/scan/creation) page to configure targets, create scans, and launch the scans to begin to assess the internal network for vulnerabilities.
+
+### Network Communications
+
+<Warning>Please note in order to communicate to the Shield Platform, outbound access over 443/tcp will need to be enabled to the following Shield Cyber API endpoint **https://shieldcyberapi.azurewebsites.net/api/**</Warning>
+
+### Windows OS & MacOS Install
+
+There are limitations installing the Shield scanner on Windows systems.  Specifically, to run the scanner, the Windows host needs to have Docker Desktop installed which can only run on Windows workstations.  Additionally, the installation process is not as automated as the Linux versions of the deployment.  Users with the Windows or MacOS version of the scanner will need to install the Shield service alongside the scanner.  
+
+#### Dependencies
+
+To install the Shield scanner successfully on a Mac or Windows 10/11 OS, WSL (Windows only) and Docker Desktop need to be installed and available.  Once Docker Desktop is installed, make sure the Docker engine is started before attempting to install the Shield Scanner.
+
+- [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+#### Install & Configure the Shield Scanner
+
+1. Download and unzip this repository: [Shield Scanner](https://github.com/Shield-Cyber/ShieldCyber-REST-API/archive/refs/heads/main.zip)
+2. Unzip the folder contents
+3. Navigate to the *ShieldCyber-REST-API-main* folder
+4. Open the *example.env* file within a text editor & change the `yourpasswordhere` value and save
+5. Re-name the *example.env* file to *.env*
+6. Open a command prompt as administrator, and navigate to the *ShieldCyber-REST-API-main* folder
+7. Install and start the Shield scanner with the following command: `docker compose up -d`
+

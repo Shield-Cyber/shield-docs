@@ -1,0 +1,32 @@
+---
+title: "Agent-Based Scanning"
+description: "To perform individual scans on a host-by-host basis, Shield allows users to download and install agents across assets to assess the risks and vulnerabilities on each of those assets.  In order to install the agent on each machine, Shield provides a simple PowerShell script execute on each host (or across multiple hosts with a remote monitoring and management tool)."
+---
+
+### Deployment
+
+There are several ways that users can access the deployment script for agent-based vulnerability scanning.  Within the [Agents](https://platform.shieldcyber.io/agents) page, users can click **New Agent** and they will be directed to the Agent deployment page.  Additionally, users can navigate directly to the [**Deployment**](https://platform.shieldcyber.io/deployment/internal-network)(Agent-Based) page to access a subscription-specific PowerShell script that can be deployed on a host-by-host basis or deployed to multiple hosts via a preferred remote monitoring and management tool.
+
+<Frame type="glass">
+  <img src="/images/agent-deploy.png" />
+</Frame>
+
+<Info>Once the agents have been deployed, it may take up to five (5) minutes for each agent to complete the registration process and call back to the Shield platform.</Info>
+
+Once the agents are deployed, users can navigate back to the [**Agents**](https://platform.shieldcyber.io/agents) and click **Refresh Agents** to view the newly deployed agents.
+
+### Results
+
+Once the agents can be seen in the platform within the [**Agents**](https://platform.shieldcyber.io/agents) page, users can click **Refresh Agent Vulnerabilities** to sync all of the discovered vulnerabilities and configurations across all of the hosts where an agent is running.  All vulnerability and configuration information that has been discovered on an agent-by-agent basis will live within the [**Internal Network**](https://platform.shieldcyber.io/inetwork/overview) module.
+
+
+### Network Communications
+
+
+<Warning>Please note in order to communicate to the Shield Platform, outbound access over 1514/tcp, 1515/tcp, and 55000/tcp will need to be enabled to the following Shield Cyber LB endpoint **shieldagentlb.shieldcyber.io**</Warning>
+
+### Uninstalling Agents
+
+To uninstall agents from endpoints where it is currently running, users can type in the following commands to remove the Shield Agent and associated service and resources:
+
+`msiexec.exe /x ShieldCyberAgent.msi /qn`

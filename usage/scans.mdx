@@ -65,7 +65,7 @@ Once the scan has been named, the targets have been selected, and the scan confi
 
 ### Scan Control
 
-The scan control page displays all the scans that have been created.  
+The scan control page displays all the scans that have been created.  These scans can be launched directly from the **Scan Control** page or scheduled out to run on the **Schedule** page.
 
 <Note>The **Location** of each scanner is setup when the Shield Service is installed on a the target environment.  Subscriptions have the ability to contain multiple locations under a single subscription, however, each scanner will have one location (1:1).</Note>
 
@@ -75,4 +75,14 @@ The **Scan Control** module will allow users to view the scans at each location,
   <img src="/images/scan-control.png" />
 </Frame>
 
-To create scans for each location the subscription has access to, users should navigate to the [Scan Creation](https://docs.shieldcyber.io/docs/usage/scans/scan-creation.html) to configure and make the scans.
+To create scans, users should navigate to the [Scan Creation](https://docs.shieldcyber.io/docs/usage/scans/scan-creation.html) to configure and create the scans.
+
+### Schedule
+
+Users can tie created scans to schedules so that the scans run on a one time, daily, weekly, or monthly basis.  To schedule a scan to run, navigate to the [Schedule](https://platform.shieldcyber.io/scan/scheduling/schedule) and click **Add Schedule**. 
+
+<Frame type="glass">
+  <img src="/images/scan-schedule.png" />
+</Frame>
+
+All created scans will be listed in the **Scan** drop-down box.  Users can choose the exact date and time to run the scan, as well as the frequency the scan should occur.

@@ -1,0 +1,84 @@
+---
+title: "Active Directory Collection"
+description: "The ability to collect the AD information for a specific AD environment requires the Shield installation of a **Shield Service** to collect the users, groups, and computers objects and associated attributes.  Shield has a standalone PowerShell script within the [**Deployment**](https://platform.shieldcyber.io/deployment/identity-security) (Identity-Security) page that users can access."
+---
+
+### Deployment
+
+To deploy the Shield Active Directory (AD) service, navigate to the [**Deployment**](https://platform.shieldcyber.io/deployment/identity-security) (Identity-Security) page and the Shield platform has a pre-generated deployment PowerShell script that can be executed on a single domain-joined Windows server or workstation. 
+
+Once at the [**Deployment**](https://platform.shieldcyber.io/deployment/identity-security) page, to generate the deployment PowerShell script, enter a **Location**, and the script will be displayed in the text box.
+
+<Frame type="glass">
+  <img src="/images/ad-service-deploy.png" />
+</Frame>
+
+### Independent Service Installation
+
+Alternatively, all Shield services can be installed by downloading the Shield Microsoft Installer (MSI) and launched directly on the 
+
+Download the guided Shield MSI [here](https://shieldcyberstoregen.blob.core.windows.net/installers/ShieldCyberServices.msi) and run as Administrator on a Windows host within the desired internal network. Once the MSI is downloaded and executed, you will be prompted to begin the installation:
+
+<Frame type="glass">
+  <img src="/images/agent-startscreen.png" />
+</Frame>
+
+Click **next** to decide where to install the files for the services:
+<Frame type="glass">
+  <img src="/images/agent-install-location.png" />
+</Frame>
+
+
+On the next screen, you will need to select the services to install.  The following services are available:
+- **Active Directory**: Active Directory collection module
+- **Nessus**: Nessus Professional integration service installation
+- **Shield**: Shield network scanner module
+
+<Frame type="glass">
+  <img src="/images/agent-service-selection.png" />
+</Frame>
+
+Select **next** to install all dependencies and proceed to the service configuration for the choices that were selected.
+
+Insert the following in the **Active Directory** service configuration: 
+- **Location Name**: Name a location for the specific network where you will be deploying.  This can be any value, however, it will need to be *distinct* for within each subscription.  **This should be the same value as the Shield scanner configuration within the next step.**
+- **Subscription ID**: Insert the Subscription ID for where the scanner location should be created.
+- **API Key**: Enter the designated API key for the subscription.  This value can be copied directly from the platform on the [Subscriptions](https://platform.shieldcyber.io/account) page.
+
+<Warning>Please note, users have the ability to regenerate the subscription API Key, however, once this is regenerated, the previous API Key(s) will no longer work.  To re-connect any services utilizing old API Key(s), please modify the existing API Key and restart any deployed services.</Warning>
+
+<Frame type="glass">
+  <img src="/images/agent-shield-config.png" />
+</Frame>
+
+
+Click **next** to proceed to input the credentials that the **Active Directory** service will run under the context of:
+
+<Frame type="glass">
+  <img src="/images/agent-ad-credentials.png" />
+</Frame>
+
+The credentials will need to be entered in the following format: 
+- **User Name**: *DOMAIN\Username*
+- **Domain**: *domain.local*
+- **Password**: *Password* (If you are using a GMSA/MSA, this can be left empty)
+
+
+<Info>Shield recommends setting up a group managed service account (GMSA) with limited permissions on the domain to run the **Active Directory** service.  To view guidance on creating a GMSA, please review the following guidance from Microsoft [here](https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts).</Info>
+
+Click **next** to proceed to install all the Shield AD service and finalize the installation: 
+
+
+<Frame type="glass">
+  <img src="/images/agent-finish.png" />
+</Frame>
+
+To verify that the **Active Directory** service installed correctly, you can open the services pane (`Windows Key + run.exe` and enter `services.msc`), and the **Shield Cyber AD Agent** should be running:
+
+<Frame type="glass">
+  <img src="/images/ad-service.png" />
+</Frame>
+
+### Results
+
+Once the service is installed, the AD objects and risks associated with the objects should start to populate within the [Identity Security](https://platform.shieldcyber.io/isecurity/overview) module within the Shield platform.

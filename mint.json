@@ -25,12 +25,6 @@
     "name": "Shield Platform",
     "url": "https://platform.shieldcyber.io"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   
   "navigation": [
     {
@@ -54,10 +48,10 @@
     {
       "group": "Deployment",
       "pages": [
-        "Attack Surface Scanning",
-        "Agent Scanning",
-        "Network Scanning",
-        "Active Directory Collection"
+        "deployment/attack-surface-scanning",
+        "deployment/internal-network-scanning",
+        "deployment/agent-scanning",
+        "deployment/ad-collection"
         
       ]
     },
@@ -78,16 +72,6 @@
   ],
 
   "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://docs.shieldcyber.io"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
     {
       "name": "Blog",
       "icon": "newspaper",
