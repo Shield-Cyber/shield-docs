@@ -30,3 +30,29 @@ Once the agents can be seen in the platform within the [**Agents**](https://plat
 To uninstall agents from endpoints where it is currently running, users can type in the following commands to remove the Shield Agent and associated service and resources:
 
 `msiexec.exe /x ShieldCyberAgent.msi /qn`
+
+### Troubleshooting
+
+For older operating systems that do not support newer versions of PowerShell and/or cannot download the Shield Cyber Agent MSI file programmatically, the MSI can be installed and transferred over to the machine and installed manually.
+
+1. Download the latest version of the Shield Cyber Agent MSI here: [Shield Cyber Agent MSI](https://shieldcyberstoregen.blob.core.windows.net/installers/ShieldCyberAgent.msi)
+
+2. Run the commands below or save them to a PowerShell (.ps1) file to execute on the target hosts: 
+
+```
+
+# Set the MSI arguments pointed at the MSI in the correct folder
+$msiArguments = '/i "C:\Shield\MSI\Location\ShieldCyberAgent.msi" SHIELD_AGENT_GROUP=ENTER-SUBSCRIPTION-ID-HERE /quiet'
+
+# Start the MSI installation
+Start-Process msiexec -ArgumentList $msiArguments -Wait
+
+# Sleep for a second to ensure everything is settled
+Start-Sleep -Seconds 1
+
+# Start the ShieldCyberAgent service
+Net Start ShieldCyberAgentSvc -Wait
+
+```
+
+<Note> Please update the file path location, as well as the SHIELD_AGENT_GROUP (Subscription ID) within the below script</Note>
