@@ -13,6 +13,35 @@ Once at the [**Deployment**](https://platform.shieldcyber.io/deployment/identity
   <img src="/images/ad-service-deploy.png" />
 </Frame>
 
+### Troubleshooting
+
+If there are errors when launching the PowerShell script, users can troubleshoot further by downloading the Shield Cyber MSI to the domain-joined Windows host, and perform the following commands one-by-one or together creating a PowerShell (.ps1) file and executing them together.
+
+1. Download the Shield Cyber Services MSI here: [Shield Cyber Services MSI](https://shieldcyberstoregen.blob.core.windows.net/installers/ShieldCyberServices.msi)
+2. Run the commands below or save them to a PowerShell (.ps1) file to execute on the target hosts:
+```
+# OPTION FOR SCRIPTING - Set the execution policy temporarily for this process to ensure the script runs.  Users should not need to perform this step if they are executing the commands one-by-one.
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force
+
+# Path to the MSI installer, assuming it is already in the designated location
+$destination = "C:\Users\Public\Downloads\ShieldCyberServices.msi"
+
+# Arguments for installing the MSI
+$msiArguments = '/i "C:\Users\Public\Downloads\ShieldCyberServices.msi" SHIELD-LOCATION-NAME="CREATE-LOCATION" SHIELD_SUBSCRIPTION_ID="INSERT-SUBSCRIPTION-ID" SHIELD_SUBSCRIPTION_API_KEY="INSERT-API-KEY" INSTALL_ACTIVE_DIRECTORY="Yes" /quiet'
+
+# Start the MSI installation
+Start-Process msiexec -ArgumentList $msiArguments -Wait
+
+# Sleep for ten seconds to ensure that installation processes have settled
+Start-Sleep -Seconds 10
+
+# Start the specified service, assuming it is correctly named in the script; adjust as necessary
+Net Start ShieldCyber.Agent.AD.exe -Wait
+```
+<Note> Please update the file path location, as well as the SHIELD-LOCATION-NAM (user created value), INSERT-SUBSCRIPTION-ID (Subscription ID), and INSERT-API-KEY values within the script above</Note>
+
+If there are additional issues, please send the errors received from these commands to support@shieldcyber.io.
+
 ### Independent Service Installation
 
 Alternatively, all Shield services can be installed by downloading the Shield Microsoft Installer (MSI) and launched directly on the 
