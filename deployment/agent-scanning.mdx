@@ -111,10 +111,28 @@ Please follow the steps listed below to install the Shield vulnerability collect
     - Set permission on this folder to allow access to the distribution package
     - Copy the Shield Cyber Agent MSI ([linked here](https://shieldcyberstoregen.blob.core.windows.net/installers/ShieldCyberAgent.msi)) in the shared folder
   </Step>
-   <Step title="Create a distribution point">
-    - Log onto the server as an Administrator
-    - Create a shared network folder (which will contain the MSI)
-    - Set permission on this folder to allow access to the distribution package
-    - Copy the Shield Cyber Agent MSI ([linked here](https://shieldcyberstoregen.blob.core.windows.net/installers/ShieldCyberAgent.msi)) in the shared folder
+  <Step title="Create a batch script to run the MSI">
+    - Copy the following command and insert your subscription ID to a file and name it ShieldCyberAgent.bat
+    ```
+    @echo off
+msiexec.exe /i \\path\to\shared\folder\ShieldCyberAgent.msi SHIELD_AGENT_GROUP=SUBSCRIPTION-ID /quiet
+net start ShieldCyberAgentSvc
+```
+    - Save the file and insert this into the shared distribution point
+  </Step>
+   <Step title="Create a Group Policy Object">
+    - Click on the **Start** button and open **Go to Start and open Group Policy Management**
+    - Expand Forest (your forest) > Domains (your domain)
+    - Right-click on Group Policy Objects and select New
+    -Enter a name for your policy and leave Source Starter GPO as (none)
+  </Step>
+  <Step title="Configure the Startup Script in GPO">
+    - Double click on your previously created policy
+    - In the right panel click on the Settings Tab
+    - You should see Computer Configuration and User Configuration, right-click anywhere in the panel and select Edit
+    - Expand Computer Configuration > Windows Settings and double click on Scripts
+    - Right click on Startup and select **Properties**
+    - Click **Add** and select the batch file that you created within the shared location.
+    - Click **Apply** and **OK** to save the GPO to run the script the next time the machine is restarted.
   </Step>
 </Steps>
