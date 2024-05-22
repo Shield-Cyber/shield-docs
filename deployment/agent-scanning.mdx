@@ -56,3 +56,65 @@ Net Start ShieldCyberAgentSvc -Wait
 ```
 
 <Note> Please update the file path location, as well as the SHIELD_AGENT_GROUP (Subscription ID) within the script above</Note>
+
+### Additional Deployment Methods
+
+#### Deploy Shield via Microsoft InTune
+
+To deploy the Shield agent via InTune, users can leverage InTune's PowerShell scripting feature to install the Shield vulnerability collection agent on their desired hosts.
+
+<Steps>
+  <Step title="Navigate to Intune">
+    Navigate to [https://intune.microsoft.com](https://intune.microsoft.com) to access the Intune platform.
+  </Step>
+  <Step title="Access the device scripting and remediations section within Intune">
+    Navigate to the devices module that on the left-side pane, then access the [Scripts and remediations function](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMenu/~/scripts), and access the Platform scripts tab.
+  <Frame type="glass">
+  <img src="/images/intune-deploy.png" />
+</Frame>
+  </Step>
+  <Step title="Navigate to the Shield platform & Agent deployment feature">
+    Navigate to the [Shield platform](https://platform.shieldcyber.io) within the subscription you are looking to deploy from. Go to the Agents module and select **Add Agent** and copy the generated PowerShell script to a .ps1 file.
+  <Frame type="glass">
+  <img src="/images/agent-powershell-intune.png" />
+</Frame>
+  </Step>
+  <Step title="Create Intune PowerShell Script">
+    Select **Add** from the Intune Platform Scripts section and select Windows 10 and later option.  Name the script, add a description, and select **Next**.
+  <Frame type="glass">
+  <img src="/images/intune-name.png" />
+</Frame>
+  </Step>
+  <Step title="Set scope for devices configured within Intune, Review, & finish">
+    Select the desired group and/or devices that you would like to deploy the Shield vulnerability agent to and select **Next**.  Review all options and then click **Add** to your Intune PowerShell scripts.
+  <Frame type="glass">
+  <img src="/images/intune-scope.png"/>
+</Frame>
+  </Step>
+</Steps>
+
+
+#### Deploy Shield via GPO
+
+<Note> This deployment method should be utilized to understand how to deploy the Shield Agent (via MSI) on multiple machines through Group Policy in Windows 2012 and 2016 environments</Note>
+
+Deployment via Group Policy can be achieved and assigned in several ways including; 
+- **Per-User**: If it is assigned on a per-user basis, then it will be installed when the user logs on.
+- **Per-Machine**: If is assigned on a per-machine basis, then it will be installed when the machine starts.
+
+Please follow the steps listed below to install the Shield vulnerability collection agent with Group Policy: 
+
+<Steps>
+  <Step title="Create a distribution point">
+    - Log onto the server as an Administrator
+    - Create a shared network folder (which will contain the MSI)
+    - Set permission on this folder to allow access to the distribution package
+    - Copy the Shield Cyber Agent MSI ([linked here](https://shieldcyberstoregen.blob.core.windows.net/installers/ShieldCyberAgent.msi)) in the shared folder
+  </Step>
+   <Step title="Create a distribution point">
+    - Log onto the server as an Administrator
+    - Create a shared network folder (which will contain the MSI)
+    - Set permission on this folder to allow access to the distribution package
+    - Copy the Shield Cyber Agent MSI ([linked here](https://shieldcyberstoregen.blob.core.windows.net/installers/ShieldCyberAgent.msi)) in the shared folder
+  </Step>
+</Steps>
