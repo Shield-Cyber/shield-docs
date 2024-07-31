@@ -5,29 +5,26 @@ description: "The ability to configure and perform vulnerability scans against a
 
 ## Scanner Deployment
 
-This scanner should be used for internal network vulnerability scans or discovery scans for different network locations where it will be deployed.  Before proceeding to install the scanner, please make sure you have the following required values to link the scanner properly:
-  - **Subscription ID** - Subscription ID where the scanner needs to link back to.
-  - **Location Name** - Location name where the scanner is deployed. Users should create this value and make sure it is unique for each subscription.
-  - **Subscription API Key** - API Key located within the [**My Account**](https://platform.shieldcyber.io/account) page, under the **Subscriptions** tab.  Use the `Copy` button within the Subscriptions table to access the API Key.
+<Note> Please note that the steps to deploy a Shield scanner has changed.  The latest streamlined deployment instructions can be found below.</Note>
 
-<Warning>Please note, users have the ability to regenerate the subscription API Key, however, once this is regenerated, the previous API Key(s) will no longer work.  To re-connect any services utilizing old API Key(s), please modify the existing API Key and restart any deployed services.</Warning>
+The Shield scanner can be used for internal network vulnerability scans or discovery scans for different network locations where it can be deployed.
 
 To install and link a dedicated Shield network scanner, users will need to do the following:
 
 <Steps>
   <Step title="Deploy a Dedicated Shield Scanner">
-    Users should deploy a dedicated Shield scanner to install the Shield scanner software on to perform network-based vulnerability scans.
+    Users should deploy a dedicated Shield scanner (Debian GNU/Linux OS preferred) to install the Shield scanner software on to perform network-based vulnerability scans.
   </Step>
-  <Step title="Download and Install the Shield Scanner">
-    Navigate to the Deployment page and input the required parameters to generate the necessary installation scripts. Copy and run these scripts on the dedicated Shield scanner.
+  <Step title="Execute the Shield Scanner Installation Script">
+    Navigate to the **Deployment** page, within the **Internal Network** tab, and click into the **Network-based** deployment pane.  Enter a location name for the scanner that is going to be deployed, copy the command out of the platform, and execute the script on the machine that has been setup.
   </Step>
-  <Step title="Link the Scanner within the Shield Platform">
-    Navigate to the Settings page to link the scanner within the Shield platform.
+  <Step title="Confirm the Scanner has been Successfully Linked">
+    Navigate to the Settings page, under the Scanners > Shield tab and confirm that the scanner location deployed is linked to Shield.
   </Step>
 </Steps>
 
-### Linux-Based OS (Preferred) Install
-To install on a Linux based OS, there is a single script that can be downloaded and executed to install and start the Shield service.  Once the Shield service is installed, the scanner can then be installed, where the password needs to be set.
+### Debian GNU/Linux OS Install (Preferred)
+To install on a Debian Linux based OS, there is a single script that can be downloaded and executed to install and start the Shield service.  
 
 #### Minimum Recommended Specs
 
@@ -39,11 +36,9 @@ To install on a Linux based OS, there is a single script that can be downloaded 
 
 ### Deployment
 
-Shield now has a consolidated **Deployments** page within the platform.  To manage all of the deployments for the services, please navigate to the [Internal Network Deployment](https://platform.shieldcyber.io/deployment/internal-network) page and click into the **Network-Based** tab to generate the commands needed to install and start the Shield network-based vulnerability scanner.
+The consilidated **Deployment** page has now been configured to provided users with automated scripting to install and link scanners to the specified subscription.
 
-The following user-created values should be added to generate the commands necessary to configure and install the Shield scanner: 
-- **Location**: Network location where the scanner will be deployed (eg., Shield Internal Network)
-- **Password**: User generated password that will be used to link the scanner to the Shield platform
+To manage all of the deployments for the network-based scanners, please navigate to the [Internal Network Deployment](https://platform.shieldcyber.io/deployment/internal-network) page and click into the **Network-Based**, insert the **Location** value to generate the single deployment command to install the scanner.
 
 <Frame type="glass">
   <img src="/images/intn-deployment.png" />
