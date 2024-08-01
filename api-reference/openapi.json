@@ -18,10 +18,25 @@
         "summary": "Gets a paginated list of attack surface assets.",
         "parameters": [
           {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Offset",
             "in": "query",
             "description": "The zero based offset for pagination.",
-            "style": "form",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -33,7 +48,6 @@
             "name": "Limit",
             "in": "query",
             "description": "The limit of results per call, between 1-100.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -44,13 +58,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AssetExportRow"
+                    "$ref": "#/components/schemas/AttackSurfaceAsset"
                   }
                 }
               }
@@ -151,10 +165,45 @@
         "summary": "Gets a paginated list of attack surface vulnerabilities.",
         "parameters": [
           {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CVE",
+            "in": "query",
+            "description": "An optional CVE filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Risks",
+            "in": "query",
+            "description": "An optional risks filter.",
+            "schema": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RiskSeverities"
+              }
+            }
+          },
+          {
             "name": "Offset",
             "in": "query",
             "description": "The zero based offset for pagination.",
-            "style": "form",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -166,7 +215,6 @@
             "name": "Limit",
             "in": "query",
             "description": "The limit of results per call, between 1-100.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -177,13 +225,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ExternalVulnerabilityExportRow"
+                    "$ref": "#/components/schemas/AttackSurfaceVulnerability"
                   }
                 }
               }
@@ -276,18 +324,25 @@
         ]
       }
     },
-    "/external-api/v1/identity-security/vulnerabilties": {
+    "/external-api/v1/identity-security/computers": {
       "get": {
         "tags": [
           "IdentitySecurity"
         ],
-        "summary": "Gets a paginated list of identity security vulnerabilities.",
+        "summary": "Gets a paginated list of identity security computers.",
         "parameters": [
+          {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Offset",
             "in": "query",
             "description": "The zero based offset for pagination.",
-            "style": "form",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -299,7 +354,6 @@
             "name": "Limit",
             "in": "query",
             "description": "The limit of results per call, between 1-100.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -310,13 +364,450 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/IdentityVulnerabilityExportRow"
+                    "$ref": "#/components/schemas/IdentitySecurityComputer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/identity-security/computers/export-csv": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Generates a CSV export of all identity security computers.",
+        "responses": {
+          "200": {
+            "description": "Success.  A string representing a temporary URL where the CSV export can be downloaded.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/identity-security/groups": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Gets a paginated list of identity security groups.",
+        "parameters": [
+          {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "description": "The zero based offset for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "description": "The limit of results per call, between 1-100.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IdentitySecurityGroup"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/identity-security/groups/export-csv": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Generates a CSV export of all identity security groups.",
+        "responses": {
+          "200": {
+            "description": "Success.  A string representing a temporary URL where the CSV export can be downloaded.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/identity-security/users": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Gets a paginated list of identity security users.",
+        "parameters": [
+          {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "description": "The zero based offset for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "description": "The limit of results per call, between 1-100.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IdentitySecurityUser"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/identity-security/users/export-csv": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Generates a CSV export of all identity security users.",
+        "responses": {
+          "200": {
+            "description": "Success.  A string representing a temporary URL where the CSV export can be downloaded.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/identity-security/vulnerabilties": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Gets a paginated list of identity security vulnerabilities.",
+        "parameters": [
+          {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Risks",
+            "in": "query",
+            "description": "An optional risks filter.",
+            "schema": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RiskSeverities"
+              }
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "description": "The zero based offset for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "description": "The limit of results per call, between 1-100.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IdentitySecurityVulnerability"
                   }
                 }
               }
@@ -417,10 +908,25 @@
         "summary": "Gets a paginated list of internal network assets.",
         "parameters": [
           {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Offset",
             "in": "query",
             "description": "The zero based offset for pagination.",
-            "style": "form",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -432,7 +938,6 @@
             "name": "Limit",
             "in": "query",
             "description": "The limit of results per call, between 1-100.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -443,13 +948,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AssetExportRow"
+                    "$ref": "#/components/schemas/InternalNetworkAsset"
                   }
                 }
               }
@@ -550,10 +1055,25 @@
         "summary": "Gets a paginated list of internal network configurations.",
         "parameters": [
           {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Offset",
             "in": "query",
             "description": "The zero based offset for pagination.",
-            "style": "form",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -565,7 +1085,6 @@
             "name": "Limit",
             "in": "query",
             "description": "The limit of results per call, between 1-100.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -576,13 +1095,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ConfigurationExportRow"
+                    "$ref": "#/components/schemas/InternalNetworkConfiguration"
                   }
                 }
               }
@@ -683,10 +1202,45 @@
         "summary": "Gets a paginated list of internal network vulnerabilities.",
         "parameters": [
           {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CVE",
+            "in": "query",
+            "description": "An optional CVE filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Risks",
+            "in": "query",
+            "description": "An optional risks filter.",
+            "schema": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RiskSeverities"
+              }
+            }
+          },
+          {
             "name": "Offset",
             "in": "query",
             "description": "The zero based offset for pagination.",
-            "style": "form",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -698,7 +1252,6 @@
             "name": "Limit",
             "in": "query",
             "description": "The limit of results per call, between 1-100.",
-            "style": "form",
             "schema": {
               "maximum": 100,
               "minimum": 1,
@@ -709,13 +1262,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/InternalVulnerabilityExportRow"
+                    "$ref": "#/components/schemas/InternalNetworkVulnerability"
                   }
                 }
               }
@@ -808,15 +1361,115 @@
         ]
       }
     },
-    "/external-api/v1/reporting/vulnerabilities/pdf": {
+    "/external-api/v1/reporting/generate": {
+      "post": {
+        "tags": [
+          "Reporting"
+        ],
+        "summary": "Generates reports based on the request parameters.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportRequestParameters"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportRequestParameters"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportRequestParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success.  A list of report metadata representing the generated reports.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReportMetadata"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReportMetadata"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReportMetadata"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/reporting/get-download-link": {
       "get": {
         "tags": [
           "Reporting"
         ],
-        "summary": "Generates a PDF report of all vulnerabilities.",
+        "summary": "Generates a temporary download link for the specified report path.",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "query",
+            "description": "The path to the report.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Success.  A string representing a temporary URL where the PDF report can be downloaded.",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -869,14 +1522,85 @@
           }
         ]
       }
+    },
+    "/external-api/v1/reporting/list": {
+      "get": {
+        "tags": [
+          "Reporting"
+        ],
+        "summary": "Retrieves a list of previously generated reports.",
+        "responses": {
+          "200": {
+            "description": "Success.  A list of reports.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReportMetadata"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReportMetadata"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReportMetadata"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
-      "AssetExportRow": {
+      "AttackSurfaceAsset": {
         "type": "object",
         "properties": {
-          "hostname": {
+          "assetName": {
             "type": "string",
             "nullable": true
           },
@@ -903,54 +1627,20 @@
         },
         "additionalProperties": false
       },
-      "ConfigurationExportRow": {
+      "AttackSurfaceVulnerability": {
         "type": "object",
         "properties": {
-          "policyName": {
-            "type": "string",
-            "nullable": true
-          },
-          "checkTitle": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "rationale": {
-            "type": "string",
-            "nullable": true
-          },
-          "references": {
-            "type": "string",
-            "nullable": true
-          },
-          "remediation": {
-            "type": "string",
-            "nullable": true
-          },
-          "hostname": {
-            "type": "string",
-            "nullable": true
-          },
-          "result": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ExternalVulnerabilityExportRow": {
-        "type": "object",
-        "properties": {
-          "entityName": {
+          "assetName": {
             "type": "string",
             "nullable": true
           },
           "vulnerabilityName": {
             "type": "string",
             "nullable": true
+          },
+          "shieldExposureIndex": {
+            "type": "number",
+            "format": "double"
           },
           "severity": {
             "type": "string",
@@ -1009,10 +1699,204 @@
         },
         "additionalProperties": false
       },
-      "IdentityVulnerabilityExportRow": {
+      "IdentitySecurityComputer": {
         "type": "object",
         "properties": {
-          "entityName": {
+          "assetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "canonicalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "criticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "isPasswordNotRequired": {
+            "type": "boolean"
+          },
+          "isTrustedForDelegation": {
+            "type": "boolean"
+          },
+          "maxCriticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "operatingSystem": {
+            "type": "string",
+            "nullable": true
+          },
+          "passwordLastSet": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sid": {
+            "type": "string",
+            "nullable": true
+          },
+          "assetGroupNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityGroupNames": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentitySecurityGroup": {
+        "type": "object",
+        "properties": {
+          "assetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "criticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true
+          },
+          "maxCriticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sid": {
+            "type": "string",
+            "nullable": true
+          },
+          "assetGroupNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "computerMemberNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "userMemberNames": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentitySecurityUser": {
+        "type": "object",
+        "properties": {
+          "assetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "canonicalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "criticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "isPasswordExpired": {
+            "type": "boolean"
+          },
+          "isPasswordNotRequired": {
+            "type": "boolean"
+          },
+          "isTrustedForDelegation": {
+            "type": "boolean"
+          },
+          "maxCriticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "passwordLastSet": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sid": {
+            "type": "string",
+            "nullable": true
+          },
+          "assetGroupNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityGroupNames": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentitySecurityVulnerability": {
+        "type": "object",
+        "properties": {
+          "assetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "assetType": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipAddress": {
             "type": "string",
             "nullable": true
           },
@@ -1043,16 +1927,92 @@
         },
         "additionalProperties": false
       },
-      "InternalVulnerabilityExportRow": {
+      "InternalNetworkAsset": {
         "type": "object",
         "properties": {
-          "entityName": {
+          "assetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "operatingSystem": {
+            "type": "string",
+            "nullable": true
+          },
+          "criticality": {
+            "type": "string",
+            "nullable": true
+          },
+          "groupNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "maxCriticality": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InternalNetworkConfiguration": {
+        "type": "object",
+        "properties": {
+          "policyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "rationale": {
+            "type": "string",
+            "nullable": true
+          },
+          "references": {
+            "type": "string",
+            "nullable": true
+          },
+          "remediation": {
+            "type": "string",
+            "nullable": true
+          },
+          "assetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "result": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InternalNetworkVulnerability": {
+        "type": "object",
+        "properties": {
+          "assetName": {
             "type": "string",
             "nullable": true
           },
           "vulnerabilityName": {
             "type": "string",
             "nullable": true
+          },
+          "shieldExposureIndex": {
+            "type": "number",
+            "format": "double"
           },
           "severity": {
             "type": "string",
@@ -1137,6 +2097,104 @@
           }
         },
         "additionalProperties": { }
+      },
+      "ReportFormats": {
+        "enum": [
+          "PDF"
+        ],
+        "type": "string"
+      },
+      "ReportKinds": {
+        "enum": [
+          "ExecutiveSummary",
+          "DetailedVulnerabilities",
+          "DetailedConfigurations",
+          "DetailedAssets"
+        ],
+        "type": "string"
+      },
+      "ReportMetadata": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ReportKinds"
+          },
+          "filename": {
+            "type": "string",
+            "nullable": true
+          },
+          "format": {
+            "$ref": "#/components/schemas/ReportFormats"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReportModules": {
+        "enum": [
+          "AttackSurface",
+          "InternalNetwork",
+          "IdentitySecurity"
+        ],
+        "type": "string"
+      },
+      "ReportRequestParameters": {
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "modules": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportModules"
+            },
+            "nullable": true
+          },
+          "risks": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskSeverities"
+            },
+            "nullable": true
+          },
+          "kinds": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportKinds"
+            },
+            "nullable": true
+          },
+          "formats": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportFormats"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RiskSeverities": {
+        "enum": [
+          "Low",
+          "Medium",
+          "High",
+          "Critical"
+        ],
+        "type": "string"
       }
     },
     "securitySchemes": {
