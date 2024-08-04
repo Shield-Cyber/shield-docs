@@ -45,7 +45,6 @@
       "group": "Usage",
       "pages": [
         "usage/overview",
-        "usage/dashboard",
         "usage/attack-surface",
         "usage/internal-network",
         "usage/identity-security",

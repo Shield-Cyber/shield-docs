@@ -36,7 +36,7 @@ To install on a Debian Linux based OS, there is a single script that can be down
 
 ### Deployment
 
-The consilidated **Deployment** page has now been configured to provided users with automated scripting to install and link scanners to the specified subscription.
+The consolidated **Deployment** page has now been configured to provided users with automated scripting to install and link scanners to the specified subscription.
 
 To manage all of the deployments for the network-based scanners, please navigate to the [Internal Network Deployment](https://platform.shieldcyber.io/deployment/internal-network) page and click into the **Network-Based**, insert the **Location** value to generate the single deployment command to install the scanner.
 
@@ -44,7 +44,7 @@ To manage all of the deployments for the network-based scanners, please navigate
   <img src="/images/intn-deployment.png" />
 </Frame>
 
-Once these four (4) commands are ran successfully on the dedicated Shield scanner, the Shield service (ShieldCyber.Agent.Shield) will start and the scanner will begin to initialize and install the plugins required to perform vulnerability scans.  To confirm that the service is running successfully on the dedicated scanner, run the following command to view the service output:
+Once this single command is executed on the dedicated host, the Shield service (ShieldCyber.Agent.Shield) will start and the scanner will begin to initialize and install the plugins required to perform vulnerability scans.  To confirm that the service is running successfully on the dedicated scanner, run the following command to view the service output:
 
 `sudo service ShieldCyber.Agent.Shield status`
 
@@ -54,15 +54,7 @@ And the output of this command should state that the service is idle:
   <img src="/images/service-output.png" />
 </Frame>
 
-Once the service is running in the desired state, continue to link the scanner within the platform by navigating to **Settings** -> [**Scanners**](https://platform.shieldcyber.io/settings/scanners) to complete linking the scanner.
-
-### Link Scanner
-
-To use the scanner, it will need to be linked within the Shield platform.  To complete this step, navigate to the **Settings** -> [**Scanners](https://platform.shieldcyber.io/settings/scanners), click **New Configuration**, and then enter the following values, then save the created configuration:
-  - **Location**: Select the location that was created for the scanner that is being linked.  The Shield service needs to be installed and running for the Location value to populate within the drop-down box.
-  - **Password**: Enter the password that was created during the Shield scanner deployment process
-
-Once the scanner is linked and the settings are saved, users can begin performing network-based vulnerability scans for the newly deployed scanner.  Proceed to the [**Scan Creation**](https://platform.shieldcyber.io/scan/creation) page to configure targets, create scans, and launch the scans to begin to assess the internal network for vulnerabilities.
+Once the Shield scanner is installed and the service is running, the scanner will be linked to the specified subscription.  To view the connection, users can navigate to the to **Settings** -> [**Scanners**](https://platform.shieldcyber.io/settings/scanners) to view the location and scanner that is linked to the platform.
 
 ### Network Communications
 
