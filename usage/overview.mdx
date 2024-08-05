@@ -3,15 +3,19 @@ title: "Subscriptions"
 description: "The Subscriptions module allows users with multiple subscriptions to see high-level information across all of the subscriptions they are managing."
 ---
 
+### Subscription Metrics
+
+The metrics for each subscription will show an overview count of the numbers of Critical, High, Medium, and Low rated risks (using the Shield Exposure Index score) across each subscriptions' attack surface, internal network, and identity environment. Additionally, the Subscriptions page gives insight into the connected services, e.g., scanners and agents, that are currently connected or disconnected to the subscription.
+
+<Tip>Each card within the Subscriptions are linked to the module for the subscription.  So, users can navigate to the specific subscription by clicking into the tiles for the subscription they would like to review.</Tip>
+
+
 <Frame type="glass">
-  <img src="/images/overview.png" />
+  <img src="/images/subscriptions.png" />
 </Frame>
 
-### Overview Metrics
-
+Please note the following services that may need attention and manual intervention to keep complete coverage for scanning within each subscription:
 
 - **Agents** - The number of agents that have been configured and are currently calling back to the platform.
 
 - **Scanners** - The number of all scanners and which ones are connected or disconnected.
-
-- **Vulnerabilities** - The highest criticality of vulnerabilities that have surfaced within each subscription.
