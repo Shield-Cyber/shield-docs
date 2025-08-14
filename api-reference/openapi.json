@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "Shield Cyber's External API",
     "contact": {
@@ -29,6 +29,22 @@
             "name": "IPAddress",
             "in": "query",
             "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerName",
+            "in": "query",
+            "description": "An optional scanner name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerType",
+            "in": "query",
+            "description": "An optional scanner type filter.",
             "schema": {
               "type": "string"
             }
@@ -211,7 +227,6 @@
             "in": "query",
             "description": "An optional risks filter.",
             "schema": {
-              "minItems": 1,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/RiskSeverities"
@@ -342,7 +357,7 @@
         ]
       }
     },
-    "/external-api/v1/attack-surface/vulnerabilties": {
+    "/external-api/v1/attack-surface/vulnerabilities": {
       "get": {
         "tags": [
           "AttackSurface"
@@ -378,7 +393,6 @@
             "in": "query",
             "description": "An optional risks filter.",
             "schema": {
-              "minItems": 1,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/RiskSeverities"
@@ -447,7 +461,7 @@
         ]
       }
     },
-    "/external-api/v1/attack-surface/vulnerabilties/export-csv": {
+    "/external-api/v1/attack-surface/vulnerabilities/export-csv": {
       "get": {
         "tags": [
           "AttackSurface"
@@ -509,6 +523,205 @@
         ]
       }
     },
+    "/external-api/v1/deployment/internal-network/agent-based/windows": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Retrieves the deployment command for the internal network module, agent-based deployment for Windows.",
+        "description": "This will be a PowerShell command that needs to be run as an administrator on the target machine.",
+        "responses": {
+          "200": {
+            "description": "Success.  The command.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/deployment/internal-network/network-based/linux-apt": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Retrieves the deployment command for the internal network module, network-based deployment for Linux APT.",
+        "description": "This will be a shell command that needs to be run as an administrator on the target machine.",
+        "parameters": [
+          {
+            "name": "locationName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.  The command.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/deployment/internal-network/network-based/linux-rpm": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Retrieves the deployment command for the internal network module, network-based deployment for Linux RPM.",
+        "description": "This will be a shell command that needs to be run as an administrator on the target machine.",
+        "parameters": [
+          {
+            "name": "locationName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.  The command.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/deployment/identity-security/windows": {
+      "get": {
+        "tags": [
+          "Deployment"
+        ],
+        "summary": "Retrieves the deployment command for the identity security module for Windows.",
+        "description": "This will be a PowerShell command that needs to be run as an administrator on the target machine.\r\nThe target machine must be joined to the Active Directory domain.",
+        "parameters": [
+          {
+            "name": "locationName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.  The command.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
     "/external-api/v1/identity-security/computers": {
       "get": {
         "tags": [
@@ -520,6 +733,22 @@
             "name": "AssetName",
             "in": "query",
             "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerName",
+            "in": "query",
+            "description": "An optional scanner name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerType",
+            "in": "query",
+            "description": "An optional scanner type filter.",
             "schema": {
               "type": "string"
             }
@@ -648,6 +877,161 @@
         ]
       }
     },
+    "/external-api/v1/identity-security/domains": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Gets a paginated list of identity security domains.",
+        "parameters": [
+          {
+            "name": "AssetName",
+            "in": "query",
+            "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerName",
+            "in": "query",
+            "description": "An optional scanner name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerType",
+            "in": "query",
+            "description": "An optional scanner type filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "description": "The zero based offset for pagination, defaults to 0.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "description": "The limit of results per call, between 1-1,000, defaults to 100.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IdentitySecurityDomain"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/identity-security/domains/export-csv": {
+      "get": {
+        "tags": [
+          "IdentitySecurity"
+        ],
+        "summary": "Generates a CSV export of all identity security domains.",
+        "responses": {
+          "200": {
+            "description": "Success.  A string representing a temporary URL where the CSV export can be downloaded.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
     "/external-api/v1/identity-security/groups": {
       "get": {
         "tags": [
@@ -659,6 +1043,22 @@
             "name": "AssetName",
             "in": "query",
             "description": "An optional asset name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerName",
+            "in": "query",
+            "description": "An optional scanner name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerType",
+            "in": "query",
+            "description": "An optional scanner type filter.",
             "schema": {
               "type": "string"
             }
@@ -833,7 +1233,6 @@
             "in": "query",
             "description": "An optional risks filter.",
             "schema": {
-              "minItems": 1,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/RiskSeverities"
@@ -980,6 +1379,22 @@
             }
           },
           {
+            "name": "ScannerName",
+            "in": "query",
+            "description": "An optional scanner name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerType",
+            "in": "query",
+            "description": "An optional scanner type filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Offset",
             "in": "query",
             "description": "The zero based offset for pagination, defaults to 0.",
@@ -1103,7 +1518,7 @@
         ]
       }
     },
-    "/external-api/v1/identity-security/vulnerabilties": {
+    "/external-api/v1/identity-security/vulnerabilities": {
       "get": {
         "tags": [
           "IdentitySecurity"
@@ -1131,7 +1546,6 @@
             "in": "query",
             "description": "An optional risks filter.",
             "schema": {
-              "minItems": 1,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/RiskSeverities"
@@ -1200,7 +1614,7 @@
         ]
       }
     },
-    "/external-api/v1/identity-security/vulnerabilties/export-csv": {
+    "/external-api/v1/identity-security/vulnerabilities/export-csv": {
       "get": {
         "tags": [
           "IdentitySecurity"
@@ -1281,6 +1695,22 @@
             "name": "IPAddress",
             "in": "query",
             "description": "An optional IP address filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerName",
+            "in": "query",
+            "description": "An optional scanner name filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ScannerType",
+            "in": "query",
+            "description": "An optional scanner type filter.",
             "schema": {
               "type": "string"
             }
@@ -1610,7 +2040,6 @@
             "in": "query",
             "description": "An optional risks filter.",
             "schema": {
-              "minItems": 1,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/RiskSeverities"
@@ -1741,7 +2170,7 @@
         ]
       }
     },
-    "/external-api/v1/internal-network/vulnerabilties": {
+    "/external-api/v1/internal-network/vulnerabilities": {
       "get": {
         "tags": [
           "InternalNetwork"
@@ -1777,7 +2206,6 @@
             "in": "query",
             "description": "An optional risks filter.",
             "schema": {
-              "minItems": 1,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/RiskSeverities"
@@ -1846,7 +2274,7 @@
         ]
       }
     },
-    "/external-api/v1/internal-network/vulnerabilties/export-csv": {
+    "/external-api/v1/internal-network/vulnerabilities/export-csv": {
       "get": {
         "tags": [
           "InternalNetwork"
@@ -2140,6 +2568,421 @@
           }
         ]
       }
+    },
+    "/external-api/v1/subscription": {
+      "post": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Creates a new subscription.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionModelParameters"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionModelParameters"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionModelParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success.  The created subscription.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Retrieves the authenticated subscription.",
+        "responses": {
+          "200": {
+            "description": "Success.  The retrieved subscription.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Updates an existing subscription.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionModelParameters"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionModelParameters"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionModelParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success.  The updated subscription.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/subscription/list": {
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Retrieves all subscriptions accessible to the authenticated API key.",
+        "responses": {
+          "200": {
+            "description": "Success.  All accessible subscriptions.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/subscription/regenerate-agent-registration-key": {
+      "patch": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Updates an existing subscription with a regenerated agent registration key.",
+        "responses": {
+          "200": {
+            "description": "Success.  The updated subscription.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
+    },
+    "/external-api/v1/subscription/regenerate-api-key": {
+      "patch": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Updates an existing subscription with a regenerated API key.",
+        "responses": {
+          "200": {
+            "description": "Success.  The updated subscription.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "x-subscription-id": [ ],
+            "x-api-key": [ ]
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2174,6 +3017,14 @@
           "maxCriticality": {
             "type": "string",
             "nullable": true
+          },
+          "scannerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerType": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2193,15 +3044,28 @@
             "type": "number",
             "format": "double"
           },
+          "shieldSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "adjustedSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
           "severity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "dateIdentified": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "solution": {
+            "type": "string",
+            "nullable": true
+          },
+          "references": {
             "type": "string",
             "nullable": true
           },
@@ -2277,15 +3141,28 @@
             "type": "number",
             "format": "double"
           },
+          "shieldSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "adjustedSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
           "severity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "dateIdentified": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "solution": {
+            "type": "string",
+            "nullable": true
+          },
+          "references": {
             "type": "string",
             "nullable": true
           },
@@ -2414,6 +3291,98 @@
           "identityGroupNames": {
             "type": "string",
             "nullable": true
+          },
+          "scannerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentitySecurityDomain": {
+        "type": "object",
+        "properties": {
+          "assetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "canonicalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "criticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "distinguishedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "forest": {
+            "type": "string",
+            "nullable": true
+          },
+          "forestMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "machineAccountQuota": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxCriticalityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "objectGUID": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentDomain": {
+            "type": "string",
+            "nullable": true
+          },
+          "protectedFromAccidentalDeletion": {
+            "type": "boolean"
+          },
+          "sid": {
+            "type": "string",
+            "nullable": true
+          },
+          "whenChanged": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "whenCreated": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "assetGroupNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerType": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2458,7 +3427,19 @@
             "type": "string",
             "nullable": true
           },
+          "groupMemberNames": {
+            "type": "string",
+            "nullable": true
+          },
           "userMemberNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerType": {
             "type": "string",
             "nullable": true
           }
@@ -2484,9 +3465,18 @@
             "type": "string",
             "nullable": true
           },
+          "shieldSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "adjustedSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
           "severity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "dateIdentified": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "description": {
             "type": "string",
@@ -2582,6 +3572,14 @@
           "identityGroupNames": {
             "type": "string",
             "nullable": true
+          },
+          "scannerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerType": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2605,9 +3603,18 @@
             "type": "string",
             "nullable": true
           },
+          "shieldSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "adjustedSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
           "severity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "dateIdentified": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "description": {
             "type": "string",
@@ -2664,6 +3671,14 @@
             "nullable": true
           },
           "maxCriticality": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scannerType": {
             "type": "string",
             "nullable": true
           }
@@ -2727,15 +3742,28 @@
             "type": "number",
             "format": "double"
           },
+          "shieldSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "adjustedSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
           "severity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "dateIdentified": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "solution": {
+            "type": "string",
+            "nullable": true
+          },
+          "references": {
             "type": "string",
             "nullable": true
           },
@@ -2811,15 +3839,28 @@
             "type": "number",
             "format": "double"
           },
+          "shieldSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "adjustedSeverity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
           "severity": {
+            "$ref": "#/components/schemas/RiskSeverities"
+          },
+          "dateIdentified": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "solution": {
+            "type": "string",
+            "nullable": true
+          },
+          "references": {
             "type": "string",
             "nullable": true
           },
@@ -2946,6 +3987,10 @@
           "path": {
             "type": "string",
             "nullable": true
+          },
+          "subscriptionId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2994,12 +4039,68 @@
       },
       "RiskSeverities": {
         "enum": [
+          "None",
           "Low",
           "Medium",
           "High",
-          "Critical"
+          "Critical",
+          "RiskBasedException",
+          "FalsePositive"
         ],
         "type": "string"
+      },
+      "SubscriptionModel": {
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentRegistrationKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "apiKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentSubscriptionId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionModelParameters": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "parentSubscriptionId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {
@@ -3023,4 +4124,4 @@
       }
     }
   }
-}
+}d
