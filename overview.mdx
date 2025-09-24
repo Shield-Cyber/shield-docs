@@ -13,21 +13,6 @@ description: "Welcome to Shield Cyber's official documentation site for the Shie
 
 Shield is a commercial exposure management platform that proactively identifies risks within an organization’s attack surface, internal network, and identity landscape. Shield will perform automated scanning and auditing across the various levels of a company’s attack surface. The platform will capture risk trends over time, as well as provide guidance and solutions for various remediation actions based on what is discovered. Shield will also allow organizations to track and monitor aspects of the external, internal, and identity objects that make up their overall network.
 
-## Shield's Core Modules
-
-<Card title="Attack Surface" icon="link" href="/usage/attack-surface">
-   Where all of the vulnerability, asset, and service information for your internet-facing infrastructure is managed.
-</Card>
-
-
-<Card title="Internal Network" icon="link" href="/usage/internal-network">
-   Where all of the vulnerability information and asset information for your hosts that are behind your firewall is managed.
-</Card>
-
-<Card title="Identity Security" icon="link" href="/usage/identity-security">
-   Where all of the Active Directory (AD) objects - Users, Computers, Groups - are managed and where identity-based risks can be managed.
-</Card>
-
 ## Quick Start
 
 ### Platform Access
@@ -35,64 +20,39 @@ Shield is a commercial exposure management platform that proactively identifies 
 <Accordion title="Navigate to the Shield platform" icon="browser">
     Navigate to [https://platform.shieldcyber.io](https://platform.shieldcyber.io) and click "Sign up now".
     <p align="center">
-  <img src="/images/sign-up.png" alt="sign-up" width="200"/>
+      <img src="/images/sign-up.png" alt="sign-up" width="200"/>
     </p>
-  </Accordion>
+</Accordion>
 
 <Accordion title="Create your Shield account" icon="lock">
     Enter and confirm your email address, create a password, display name, and set up multi-factor authentication (MFA).
     <p align="center">
-  <img src="/images/user-details.png" alt="user-details" width="200"/>
+      <img src="/images/user-details.png" alt="user-details" width="200"/>
     </p>
   </Accordion>
-  </AccordionGroup>
+</AccordionGroup>
 
-  ### Subscription Creation
+### Subscription Creation
 <AccordionGroup>
 <Accordion title="Create your subscription(s)" icon="folder-plus">
-    Get started by creating your first subscription.  Enter your company name and the subscription name for the network you will be managing within the platform.
+    Get started by creating your first subscription within the Hub.  Enter your company name for your initial subscription.  Create additional subscriptions using that initial parent subscription.
     <p align="center">
-  <img src="/images/sub-sign-up.png" alt="-sub-sign-up" width="350"/>
+      <img src="/images/sub-sign-up.png" alt="-sub-sign-up" width="350"/>
+    </p>
+</Accordion>
+
+<Accordion title="Navigate to Deploy Agents" icon="rocket">
+    Navigate to the [Deploy Agents](https://platform.shieldcyber.io/v2/dashboard?hub=deploy-agents) page to begin deployment.
+    <p align="center">
+      <img src="/images/deploy-agents.png" alt="deploy" width="400"/>
     </p>
   </Accordion>
+</AccordionGroup>
 
-<Accordion title="Navigate to Deployment" icon="rocket">
-    Navigate to the [Deployment](https://platform.shieldcyber.io/deployment/internal-network) page to begin using the Shield platform's capabilities.
-    <p align="center">
-  <img src="/images/nav-to-deploy.png" alt="deploy" width="400"/>
-    </p>
-  </Accordion>
-  </AccordionGroup>
-
-    ### Deployment
-<AccordionGroup>
-<Accordion title="Attack Surface Scanning" icon="globe">
-    <Note>The Shield platform comes pre-configured with external network scanners.  If you do not have a scanner deployed for your subscription, please reach out to [support@shieldcyber.io](mailto:support@shieldcyber.io).  To begin scanning internet-facing assets, please navigate to [Scan Creation](https://platform.shieldcyber.io/scan/creation) to create and launch scans.</Note>
-  </Accordion>
-
+### Deployment
 <Accordion title="Internal Agent Deployment" icon="laptop">
-    To perform agent based scanning, navigate to the [Deployment](https://platform.shieldcyber.io/deployment/internal-network) page and copy the subscription-specific PowerShell script out of the platform.  This PowerShell script can then be deployed to managed hosts with your preferred remote administration tool or technique.
-  <p align="center">
-  <img src="/images/agent-deploy.png" alt="agent deploy" width="400"/>
-    </p>
-  </Accordion>
-
-  <Accordion title="Internal Scanner Deployment" icon="network-wired">
-    To perform internal network scans, a dedicated linux-based host will be required to install the Shield network scanner software.  Set the desired network **Location** and create a linking **Password** and proceed to run the four generated commands on your dedicated internal network scanner.
+    To perform agent based scanning, navigate to the [Deploy Agents](https://platform.shieldcyber.io/v2/dashboard?hub=deploy-agents) page, select the platform and subscription and copy the script out of the platform.  This script can then be deployed to managed hosts with your preferred remote administration tool or technique.
     <p align="center">
-  <img src="/images/int-network-deployment.png" alt="deploy" width="400"/>
+      <img src="/images/deploy-agents.png" alt="agent deploy" width="400"/>
     </p>
-    To link the internal scanner, navigate to [Scanner Settings](https://platform.shieldcyber.io/settings/scanners), select the created **Location** and enter the created scanner **Password**.
- <p align="center">
-  <img src="/images/settings-scan-link.png" alt="link" width="400"/>
-    </p>
- 
-  </Accordion>
-  
-    <Accordion title="Identity Service Deployment" icon="users">
-    To assess your Active Directory (AD) environment, navigate to the [Identity Service Deployment](https://platform.shieldcyber.io/deployment/identity-security) page, set the desired network **Location**, and copy the generated PowerShell script.  The PowerShell script needs to be deployed on one Windows domain-joined host within the desired on-prem Active Directory (AD) that should be assessed.
-    <p align="center">
-  <img src="/images/ad-deploy.png" alt="addeploy" width="400"/>
-    </p>
-  </Accordion>
-  </AccordionGroup>
+</Accordion>
