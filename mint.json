@@ -103,14 +103,7 @@
     }
     
   ],
-
-  "anchors": [
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://www.shieldcyber.io/blog"
-    }
-  ],
+  "anchors": [],
   "footerSocials": {
     "x": "https://x.com/shieldcyberio",
     "github": "https://github.com/Shield-Cyber",
