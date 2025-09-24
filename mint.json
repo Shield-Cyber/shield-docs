@@ -29,7 +29,6 @@
     {
       "name": "Shield API",
       "url": "api-reference"
-      
     }
   ],
   
@@ -49,17 +48,12 @@
         "usage/identity-security",
         "usage/scans",
         "usage/reporting"
-        
       ]
     },
     {
       "group": "Deployment",
       "pages": [
-        "deployment/attack-surface-scanning",
-        "deployment/internal-network-scanning",
-        "deployment/agent-scanning",
-        "deployment/ad-collection"
-        
+        "deployment/internal-agents"        
       ]
     },
     {
