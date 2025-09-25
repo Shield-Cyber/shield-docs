@@ -50,6 +50,12 @@
       ]
     },
     {
+      "group": "Hub",
+      "pages": [
+        "hub/hub-overview"
+      ]
+    },
+    {
       "group": "Deployment",
       "pages": [
         "deployment/internal-agents"
