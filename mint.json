@@ -53,7 +53,8 @@
       "group": "Hub",
       "pages": [
         "hub/hub-overview",
-        "hub/setup-subscriptions"
+        "hub/setup-subscriptions",
+        "hub/deploy-agents"
       ]
     },
     {
