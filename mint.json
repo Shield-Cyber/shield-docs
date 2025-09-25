@@ -52,7 +52,8 @@
     {
       "group": "Hub",
       "pages": [
-        "hub/hub-overview"
+        "hub/hub-overview",
+        "hub/setup-subscriptions"
       ]
     },
     {
