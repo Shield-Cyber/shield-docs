@@ -1,9 +1,60 @@
 ---
 title: "Dashboard"
-description: "The Dashboard provides an overview across your subscriptions of the most critical issues and our recommendations."
+description: "The Dashboard provides an overview across your subscriptions of the most vulnerable items, our recommendations and a series of trends and insights.  This page may be used for prioritizing actions to take and drilling down for additional information."
 ---
 
 <Frame type="glass">
   <img src="/images/dashboard.png" />
 </Frame>
 
+### Most Vulnerable
+
+The most vulnerable subscriptions, assets and products are shown based on the number and severity of the vulnerabilities detected.  The top five of each item are shown and more can be seen by clicking the double chevron at the bottom of the panel.  To drill down into more details on a particular subscription, asset or product click on its name.  To filter the dashboard based on a particular subscription, asset or product click the filter icon that appears when hovering over the name.
+
+<Frame type="glass">
+  <img src="/images/dashboard-most-vulnerable.png" />
+</Frame>
+
+### Filtering
+
+By default there are no filters and the platform is showing information across all subscriptions, assets, products and vulnerabilities.  As you drill down into a particular item a filter will be automatically set.  For example if you click on a subscription from the most vulnerable subscriptions panel, a subscription filter will be applied.  To search for a specific item, start typing its name and select from the auto-completion drop down that will appear.  To remove a filter click into the associated text box and click the X at the end.
+
+<Frame type="glass">
+  <img src="/images/dashboard-filters.png" />
+</Frame>
+
+### Recommendations
+
+Our top recommendations for improving the security posture across your subscriptions will be listed organized by products that need to be patched.  The top five recommendations are shown and more can be seen by clicking the double chevron at the bottom of the panel.  There is information about the number of affected assets, subscriptions and vulnerabilities tied to each product.  To drill down into the recommendation, click on the product, asset count, subscription count or vulnerability count.  As an example, to see which assets are affected by the vulnerable product, select the number of assets.
+
+<Frame type="glass">
+  <img src="/images/dashboard-recommendations.png" />
+</Frame>
+
+### Trends and Insights
+
+Several trends and insights are shown to provide more context on the security posture of your subscriptions.
+
+<Frame type="glass">
+  <img src="/images/dashboard-trends-insights.png" />
+</Frame>
+
+#### Vulnerabilities Over Time
+
+The vulnerabilities over time chart will show how the number of vulnerabilities are trending over the last 90 days.  By default the chart is focused on Critical vulnerabilities.  To see other risk levels, click Critical in the legend to toggle to all risk levels or click a specific risk level to see only that risk level.
+
+#### Assets Over Time
+
+The assets over time chart will show how the number of assets are trending over the last 90 days.
+
+#### Age Insights
+
+The age insights panel will show some insights into the age of different vulnerabilities.  The newest detected vulnerability at the highest risk level will be shown to provide insight into new issues.  The oldest detected vulnerability at the highest risk level will be shown to provide insights into vulnerabilities that have been detected for the longest period of time without resolution.
+
+#### Identified Over Time
+
+The identified over time chart will show how the number of vulnerabilities being identified are trending over the last 90 days.  By default the chart is focused on Critical vulnerabilities.  To see other risk levels, click Critical in the legend to toggle to all risk levels or click a specific risk level to see only that risk level.
+
+#### Remediated Over Time
+
+The remediated over time chart will show how the number of vulnerabilities being remediated are trending over the last 90 days.  By default the chart is focused on Critical vulnerabilities.  To see other risk levels, click Critical in the legend to toggle to all risk levels or click a specific risk level to see only that risk level.
