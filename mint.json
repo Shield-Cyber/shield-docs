@@ -42,11 +42,6 @@
     {
       "group": "Usage",
       "pages": [
-        "usage/overview",
-        "usage/attack-surface",
-        "usage/internal-network",
-        "usage/identity-security",
-        "usage/scans",
         "usage/reporting"
       ]
     },
