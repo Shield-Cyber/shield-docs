@@ -45,6 +45,7 @@
         "usage/subscriptions",
         "usage/assets",
         "usage/products",
+        "usage/vulnerabilities",
         "usage/reporting"
       ]
     },
