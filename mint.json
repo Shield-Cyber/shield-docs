@@ -42,6 +42,7 @@
       "group": "Usage",
       "pages": [
         "usage/dashboard",
+        "usage/subscriptions",
         "usage/reporting"
       ]
     },
