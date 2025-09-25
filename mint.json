@@ -31,7 +31,6 @@
       "url": "api-reference"
     }
   ],
-  
   "navigation": [
     {
       "group": "Overview",
@@ -48,13 +47,13 @@
     {
       "group": "Deployment",
       "pages": [
-        "deployment/internal-agents"        
+        "deployment/internal-agents"
       ]
     },
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction" 
+        "api-reference/introduction"
       ]
     },
     {
@@ -90,7 +89,6 @@
         "api-reference/reporting/generates-a-pdf-report-of-all-vulnerabilities"
       ]
     }
-    
   ],
   "anchors": [],
   "footerSocials": {
