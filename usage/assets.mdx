@@ -1,0 +1,44 @@
+---
+title: "Assets"
+description: "The Assets page provides a view of the most vulnerable assets.  It supports breaking down by different dimensions and drilling down into an individual asset."
+---
+
+<Frame type="glass">
+  <img src="/images/assets.png" alt="Assets" />
+</Frame>
+
+### Most Vulnerable Assets
+
+The most vulnerable assets are shown based on the number and severity of the vulnerabilities detected.  The vulnerabilities, products and versions are rolled up by default.  To break down by one or more of these dimensions, click on its respective number.  As an example, to break down by products click on the product count.  To drill down into an individual asset, click on its name.
+
+<Frame type="glass">
+  <img src="/images/assets-by-product.png" alt="Asset by product" />
+</Frame>
+
+### Invididual Asset
+
+When an individual asset is selected, its criticality, most vulnerable products, details, applications and OS details will be shown.
+
+<Frame type="glass">
+  <img src="/images/asset.png" alt="Asset" />
+</Frame>
+
+#### Asset Criticality
+
+The asset criticality is the highest risk across the asset-specific criticality (if assigned) and all of the tags associated with it.
+
+#### Most Vulnerable products
+
+The most vulnerable products are shown based on the number and severity of the vulnerabilities detected.  Similar to above, dimensions are rolled up by default.  To break down by one or more of the dimensions, click on its respective number.  To filter on a specific value, click on its name.
+
+#### Asset Details
+
+The asset details include additional information such as when the asset was last scanned, the OS name and version, when the asset was last restarted to apply updates, etc.
+
+#### Applications
+
+The applications is a list of all installed software on the asset.  It provides the Vendor name, Product name and Version.  Additionally when available it will provide the Install Scope (All Users or a specific user) and the Path to the installation.
+
+#### Windows Details
+
+On Windows-based assets, the Installed KB is the latest installed monthly security roll-up KB installed on the asset.  The Latest KB is the latest available monthly security roll-up KB published by Microsoft.

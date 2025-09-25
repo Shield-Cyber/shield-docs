@@ -43,6 +43,7 @@
       "pages": [
         "usage/dashboard",
         "usage/subscriptions",
+        "usage/assets",
         "usage/reporting"
       ]
     },
