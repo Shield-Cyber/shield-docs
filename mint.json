@@ -55,7 +55,8 @@
         "hub/hub-overview",
         "hub/setup-subscriptions",
         "hub/deploy-agents",
-        "hub/adjustments"
+        "hub/adjustments",
+        "hub/tags"
       ]
     },
     {
