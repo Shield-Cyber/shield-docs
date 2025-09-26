@@ -1,47 +1,60 @@
 ---
 title: "Dashboard"
-description: "The Dashboard will show aggregates for each assets within the different modules of the Shield platform."
+description: "The Dashboard provides an overview across your subscriptions of the most vulnerable items, our recommendations and a series of trends and insights.  This page may be used for prioritizing actions to take and drilling down for additional information."
 ---
 
-<Note> Shield is continuously looking for feedback for metrics and that matter to our partners.  Please reach out to feedback@shieldcyber.io to provide feedback on dashboards you would like to see within the Shield platform. </Note>
-
-
 <Frame type="glass">
-  <img src="/images/usage-dash.png" />
+  <img src="/images/dashboard.png" alt="Dashboard" />
 </Frame>
 
-### External Attack Surface Metrics
+### Most Vulnerable
 
+The most vulnerable subscriptions, assets and products are shown based on the number and severity of the vulnerabilities detected.  The top five of each item are shown and more can be seen by clicking the double chevron at the bottom of the panel.  To drill down into more details on a particular subscription, asset or product click on its name.  To filter the dashboard based on a particular subscription, asset or product click the filter icon that appears when hovering over the name.
 
-- **Live Hosts** - The number of hosts that were identified from the last scan that was performed on the external network.
+<Frame type="glass">
+  <img src="/images/dashboard-most-vulnerable.png" alt="Most Vulnerable" />
+</Frame>
 
-- **External Services** - The number of live services across all hosts that were identified from the last scan that was performed on the external network.
+### Filtering
 
-- **External Vulnerabilities** - The number of unique vulnerabilities across the external network.
+By default there are no filters and the platform is showing information across all subscriptions, assets, products and vulnerabilities.  As you drill down into a particular item a filter will be automatically set.  For example if you click on a subscription from the most vulnerable subscriptions panel, a subscription filter will be applied.  To search for a specific item, start typing its name and select from the auto-completion drop down that will appear.  To remove a filter click into the associated text box and click the X at the end.
 
+<Frame type="glass">
+  <img src="/images/dashboard-filters.png" alt="Filtering" />
+</Frame>
 
-<Note>The vulnerabilities on each host are tracked for the lifespan of that specific vulnerability, meaning the vulnerability will live within the Shield platform until the vulnerability is remediated on the service of the host it was identified on. The aggregate and details of each vulnerability can be viewed within the asset and vulnerability details with the Attack Surface module.</Note>
+### Recommendations
 
-### Internal Network Metrics
+Our top recommendations for improving the security posture across your subscriptions will be listed organized by products that need to be patched.  The top five recommendations are shown and more can be seen by clicking the double chevron at the bottom of the panel.  There is information about the number of affected assets, subscriptions and vulnerabilities tied to each product.  To drill down into the recommendation, click on the product, asset count, subscription count or vulnerability count.  As an example, to see which assets are affected by the vulnerable product, select the number of assets.
 
+<Frame type="glass">
+  <img src="/images/dashboard-recommendations.png" alt="Recommendations" />
+</Frame>
 
-- **Internal Hosts** - The number of hosts that were identified from scans or agents that were deployed across the internal network.
+### Trends and Insights
 
-- **Identity Objects** - Identity objects are anything has an identity within a directory services environment.  Currently, Shield has the ability to collect all user, groups, and computer objects within an Active Directory (AD) environment.  This gives a relative size of the attack surface for an organization's identity layer.
+Several trends and insights are shown to provide more context on the security posture of your subscriptions.
 
-- **Internal Vulnerabilities** - The number of vulnerabilities that exist on hosts within the internal network that have been collected from scans or agent-based vulnerability detections.
+<Frame type="glass">
+  <img src="/images/dashboard-trends-insights.png" alt="Trends and Insights" />
+</Frame>
 
+#### Vulnerabilities Over Time
 
-<Note>The aggregation of remediated vulnerabilities is automated within the Shield platform.  The details of each remediated vulnerability can be found within the **Remediation** tab for both the [Attack Surface](https://platform.shieldcyber.io/asm/remediation) and [Internal Network](https://platform.shieldcyber.io/inetwork/remediation) Modules.</Note>
+The vulnerabilities over time chart will show how the number of vulnerabilities are trending over the last 90 days.  By default the chart is focused on Critical vulnerabilities.  To see other risk levels, click Critical in the legend to toggle to all risk levels or click a specific risk level to see only that risk level.
 
-### Vulnerability Categorization
+#### Assets Over Time
 
-The Shield platform will categorize each vulnerability detected across the **Attack Surface**, **Internal Network**, and **Identity Security** modules.  The categories are determined by the solution (*or fix*) to remediate the specific vulnerability.  The following categories exist within the platform:
-- **Missing Microsoft Patches**
-- **Missing Patches and Updates**
-- **Insecure Configurations and Services**
-- **Insecure Active Directory Configurations**
-- **Insecure Access Controls**
+The assets over time chart will show how the number of assets are trending over the last 90 days.
 
+#### Age Insights
 
-<Note>As the detection capabilities evolve and become more granular within the Shield platform, the categories will become more robust. The goal of categorizing each vulnerability or risk detected across external and internal hosts, as well as identities is to determine more intelligent remediation plans for the organizations that are fixing the detected issues.</Note>
+The age insights panel will show some insights into the age of different vulnerabilities.  The newest detected vulnerability at the highest risk level will be shown to provide insight into new issues.  The oldest detected vulnerability at the highest risk level will be shown to provide insights into vulnerabilities that have been detected for the longest period of time without resolution.
+
+#### Identified Over Time
+
+The identified over time chart will show how the number of vulnerabilities being identified are trending over the last 90 days.  By default the chart is focused on Critical vulnerabilities.  To see other risk levels, click Critical in the legend to toggle to all risk levels or click a specific risk level to see only that risk level.
+
+#### Remediated Over Time
+
+The remediated over time chart will show how the number of vulnerabilities being remediated are trending over the last 90 days.  By default the chart is focused on Critical vulnerabilities.  To see other risk levels, click Critical in the legend to toggle to all risk levels or click a specific risk level to see only that risk level.

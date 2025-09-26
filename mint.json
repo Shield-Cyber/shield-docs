@@ -29,44 +29,47 @@
     {
       "name": "Shield API",
       "url": "api-reference"
-      
     }
   ],
-  
   "navigation": [
     {
       "group": "Overview",
       "pages": [
-        "overview",
-        "whats-new"
+        "overview"
       ]
     },
     {
       "group": "Usage",
       "pages": [
-        "usage/overview",
-        "usage/attack-surface",
-        "usage/internal-network",
-        "usage/identity-security",
-        "usage/scans",
-        "usage/reporting"
-        
+        "usage/dashboard",
+        "usage/subscriptions",
+        "usage/assets",
+        "usage/products",
+        "usage/vulnerabilities"
+      ]
+    },
+    {
+      "group": "Hub",
+      "pages": [
+        "hub/hub-overview",
+        "hub/setup-subscriptions",
+        "hub/deploy-agents",
+        "hub/adjustments",
+        "hub/tags",
+        "hub/user-permissions",
+        "hub/reports"
       ]
     },
     {
       "group": "Deployment",
       "pages": [
-        "deployment/attack-surface-scanning",
-        "deployment/internal-network-scanning",
-        "deployment/agent-scanning",
-        "deployment/ad-collection"
-        
+        "deployment/internal-agents"
       ]
     },
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction" 
+        "api-reference/introduction"
       ]
     },
     {
@@ -102,16 +105,8 @@
         "api-reference/reporting/generates-a-pdf-report-of-all-vulnerabilities"
       ]
     }
-    
   ],
-
-  "anchors": [
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://www.shieldcyber.io/blog"
-    }
-  ],
+  "anchors": [],
   "footerSocials": {
     "x": "https://x.com/shieldcyberio",
     "github": "https://github.com/Shield-Cyber",

@@ -1,0 +1,95 @@
+---
+title: "Internal Agents"
+description: "To perform individual scans on a host-by-host basis, Shield allows users to download and install agents across assets to assess the risks and vulnerabilities on each of those assets.  In order to install the agent on each machine, Shield provides a simple script to execute on each host (or across multiple hosts with a remote monitoring and management tool)."
+---
+
+### Deployment
+
+Users can navigate directly to the [**Deploy Agents**](https://platform.shieldcyber.io/v2/dashboard?hub=deploy-agents) page to access a scripts that can be deployed on a host-by-host basis or deployed to multiple hosts via a preferred remote monitoring and management tool.
+
+<Frame type="glass">
+  <img src="/images/deploy-agents.png" alt="deploy" width="400"/>
+</Frame>
+
+<Info>Once the agents have been deployed, it may take up to five (5) minutes for each agent to complete the registration process and call back to the Shield platform.</Info>
+
+Once the agents are deployed, users can navigate back to the [**Assets**](https://platform.shieldcyber.io/v2/assets) and refresh the page to view the newly deployed agents.
+
+### Results
+
+Once the agents can be seen in the platform within the [**Assets**](https://platform.shieldcyber.io/v2/assets) page, vulnerabilities will generally be available within five minutes throughout the platform.
+
+### Additional Deployment Methods
+
+#### Deploy Shield via Microsoft InTune
+
+To deploy the Shield Internal Agent via InTune, users can leverage InTune's PowerShell scripting feature.
+
+<Steps>
+  <Step title="Navigate to Intune">
+    Navigate to [https://intune.microsoft.com](https://intune.microsoft.com) to access the Intune platform.
+  </Step>
+  <Step title="Access the device scripting and remediations section within Intune">
+    Navigate to the devices module that on the left-side pane, then access the [Scripts and remediations function](https://intune.microsoft.com/#view/Microsoft_Intune_DeviceSettings/DevicesMenu/~/scripts), and access the Platform scripts tab.
+    <Frame type="glass">
+      <img src="/images/intune-deploy.png" />
+    </Frame>
+  </Step>
+  <Step title="Navigate to the Shield platform & Agent deployment feature">
+    Navigate to the [Shield platform](https://platform.shieldcyber.io/v2/dashboard?hub=deploy-agents), select the subscription you are looking to deploy from and copy the generated PowerShell script to a .ps1 file.
+  </Step>
+  <Step title="Create Intune PowerShell Script">
+    Select **Add** from the Intune Platform Scripts section and select Windows 10 and later option.  Name the script, add a description, and select **Next**.
+    <Frame type="glass">
+      <img src="/images/intune-name.png" />
+    </Frame>
+  </Step>
+  <Step title="Set scope for devices configured within Intune, Review, & finish">
+    Select the desired group and/or devices that you would like to deploy the Shield Internal Agent to and select **Next**.  Review all options and then click **Add** to your Intune PowerShell scripts.
+    <Frame type="glass">
+      <img src="/images/intune-scope.png"/>
+    </Frame>
+  </Step>
+</Steps>
+
+#### Deploy Shield via GPO
+
+<Note> This deployment method should be utilized to understand how to deploy the Shield Internal Agent (via MSI) on multiple machines through Group Policy in Windows 2016 environments</Note>
+
+Deployment via Group Policy can be achieved and assigned in several ways including; 
+- **Per-User**: If it is assigned on a per-user basis, then it will be installed when the user logs on.
+- **Per-Machine**: If is assigned on a per-machine basis, then it will be installed when the machine starts.
+
+Please follow the steps listed below to install the Shield Internal Agent with Group Policy: 
+
+<Steps>
+  <Step title="Create a distribution point">
+    - Log onto the server as an Administrator
+    - Create a shared network folder (which will contain the MSI)
+    - Set permission on this folder to allow access to the distribution package
+    - Copy the Shield Cyber Internal Agent MSI ([linked here](https://stshieldcyberprod.blob.core.windows.net/installers/windows/agent/ShieldCyberInternalAgent.msi)) in the shared folder
+  </Step>
+  <Step title="Create a batch script to run the MSI">
+    - Copy the following command and insert your subscription ID and agent registration key to a file and name it ShieldCyberInternalAgent.bat
+    ```
+    @echo off
+msiexec.exe /i \\path\to\shared\folder\ShieldCyberInternalAgent.msi SUBSCRIPTION_ID=ENTER_SUBSCRIPTION_ID_HERE AGENT_REGISTRATION_KEY=ENTER_AGENT_REGISTRATION_KEY_HERE /quiet
+```
+    - Save the file and insert this into the shared distribution point
+  </Step>
+   <Step title="Create a Group Policy Object">
+    - Click on the **Start** button and open **Go to Start and open Group Policy Management**
+    - Expand Forest (your forest) > Domains (your domain)
+    - Right-click on Group Policy Objects and select New
+    -Enter a name for your policy and leave Source Starter GPO as (none)
+  </Step>
+  <Step title="Configure the Startup Script in GPO">
+    - Double click on your previously created policy
+    - In the right panel click on the Settings Tab
+    - You should see Computer Configuration and User Configuration, right-click anywhere in the panel and select Edit
+    - Expand Computer Configuration > Windows Settings and double click on Scripts
+    - Right click on Startup and select **Properties**
+    - Click **Add** and select the batch file that you created within the shared location.
+    - Click **Apply** and **OK** to save the GPO to run the script the next time the machine is restarted.
+  </Step>
+</Steps>
