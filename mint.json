@@ -57,7 +57,8 @@
         "hub/deploy-agents",
         "hub/adjustments",
         "hub/tags",
-        "hub/user-permissions"
+        "hub/user-permissions",
+        "hub/reports"
       ]
     },
     {
