@@ -54,7 +54,8 @@
       "pages": [
         "hub/hub-overview",
         "hub/setup-subscriptions",
-        "hub/deploy-agents"
+        "hub/deploy-agents",
+        "hub/adjustments"
       ]
     },
     {
