@@ -25,12 +25,6 @@
     "name": "Shield Platform",
     "url": "https://platform.shieldcyber.io"
   },
-  "tabs": [
-    {
-      "name": "Shield API",
-      "url": "api-reference"
-    }
-  ],
   "navigation": [
     {
       "group": "Overview",
@@ -64,45 +58,6 @@
       "group": "Deployment",
       "pages": [
         "deployment/internal-agents"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "AttackSurface",
-      "pages": [
-        "api-reference/attacksurface/gets-a-paginated-list-of-attack-surface-assets",
-        "api-reference/attacksurface/generates-a-csv-export-of-all-attack-surface-assets",
-        "api-reference/attacksurface/gets-a-paginated-list-of-attack-surface-vulnerabilities",
-        "api-reference/attacksurface/generates-a-csv-export-of-all-attack-surface-vulnerabilities"
-      ]
-    },
-    {
-      "group": "IdentitySecurity",
-      "pages": [
-        "api-reference/identitysecurity/gets-a-paginated-list-of-identity-security-vulnerabilities",
-        "api-reference/identitysecurity/generates-a-csv-export-of-all-identity-security-vulnerabilities"
-      ]
-    },
-    {
-      "group": "InternalNetwork",
-      "pages": [
-        "api-reference/internalnetwork/gets-a-paginated-list-of-internal-network-assets",
-        "api-reference/internalnetwork/generates-a-csv-export-of-all-internal-network-assets",
-        "api-reference/internalnetwork/gets-a-paginated-list-of-internal-network-configurations",
-        "api-reference/internalnetwork/generates-a-csv-export-of-all-internal-network-configurations",
-        "api-reference/internalnetwork/gets-a-paginated-list-of-internal-network-vulnerabilities",
-        "api-reference/internalnetwork/generates-a-csv-export-of-all-internal-network-vulnerabilities"
-      ]
-    },
-    {
-      "group": "Reporting",
-      "pages": [
-        "api-reference/reporting/generates-a-pdf-report-of-all-vulnerabilities"
       ]
     }
   ],
